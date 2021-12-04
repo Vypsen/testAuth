@@ -1,0 +1,18 @@
+
+.radio_value{
+    width: 40px;
+    color: #2c3e50;
+}
+
+p{
+    font-size: 19px;
+    margin: auto 20px;
+    color: #5e5e5e;
+    font-weight: 500;
+    font-family: 'Helvetica';
+    
+}
+
+.container_radio_input{
+    display: flex;
+}

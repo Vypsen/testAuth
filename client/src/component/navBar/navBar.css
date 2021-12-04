@@ -1,0 +1,54 @@
+.navbar_container{
+    display: flex;
+    padding: 5px 0px 5px 0px;
+}
+
+.navBar{
+    height: 50px;
+    width: 100%;
+    background-color: #2c3e50;
+    color: white;
+}
+
+
+.navBar_header{
+    font-size: 35px;
+    font-weight: 700;
+    margin: 0px 0px 0px 200px;
+}
+
+.navBar_signIn{
+    margin-left: auto;
+    font-size: 24px;
+    padding: 4px;
+}
+
+.navBar_signUp{
+    font-size: 24px;
+    padding: 4px;
+    margin: 0px 150px 0px 30px;
+    
+}
+
+
+
+.navBar_signIn>*{
+    color: white;
+    text-decoration: none;
+}
+.navBar_signIn>:hover{
+    color: grey;
+}
+
+.navBar_signUp>*{
+    color: white;
+    text-decoration: none;
+}
+.navBar_signUp>:hover{
+    color: grey;
+}
+
+
+
+
+

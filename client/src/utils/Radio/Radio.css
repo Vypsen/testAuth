@@ -1,0 +1,13 @@
+.set_radio{
+    width: 100%;
+    border-bottom: 3px solid #bbbbbb;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+.set_radio_text{
+    font-family: 'Helvetica';
+    font-size: 20px;
+    font-weight: 500;
+    margin: 20px 0px;
+    color: #5E5E5E;
+}
