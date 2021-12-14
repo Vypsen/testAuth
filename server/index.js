@@ -4,7 +4,9 @@ const config = require('config');
 const authRouter = require('./routes/auth');
 const PORT = config.get("serverPort")
 const app = express()
+const corsMiddleware = require('./middleware/corsMiddleware');
 
+app.use(corsMiddleware)
 app.use(express.json())
 app.use("/api/auth", authRouter)
 

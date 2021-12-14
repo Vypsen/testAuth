@@ -1,4 +1,4 @@
-import react from 'react';
+import react, {useState} from 'react';
 import './Radio.css';
 import RadioValue from '../RadioValue/RadioValue';
 
@@ -6,11 +6,15 @@ import RadioValue from '../RadioValue/RadioValue';
 const Radio = (props) =>{
     return(
         <div className="set_radio">
-            <div className="set_radio_text">{props.post.title}</div>
-            {props.post.value.map((val, index)=>
-                <RadioValue name = {props.post.title} val={val}/>
-            )}
-           
+            <div className="set_radio_text">{props.post.title} </div>
+            {props.post.input.map((val, index)=>
+                <RadioValue
+                    value = {props.value}
+                    setValue = {props.setValue}
+                    name = {props.post.title}
+                    val={val}
+                    key={index}
+                />)}
         </div>
     )
 }

@@ -1,10 +1,15 @@
 import react from 'react';
-import './input.css';
+import './Input.css';
 
 
 const Input = (props) =>{
     return(
-    <input type= {props.type} placeholder={props.placeholder} name = {props.name} />
-    )
+    <input
+        value = {props.value}
+        onChange = {(event)=>props.setValue(event.target.value)}
+        type= {props.type}
+        placeholder={props.placeholder}
+        name = {props.name}
+    />)
 }
 export default Input

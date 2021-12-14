@@ -20,7 +20,7 @@ router.post('/registration',
         if (!errors.isEmpty()) {
             return res.status(400).json({message:'error registration' , errors})
         }
-        const {email, password} = req.body
+        const {name, second_name, patronymic, age, sex, diagnostic, email, password} = req.body
         const candidate = await User.findOne({email})
 
         if (candidate){
@@ -28,16 +28,10 @@ router.post('/registration',
         }
 
         const hash_password = await bcryptjs.hash(password, 8)
-        const user = new User({email, password: hash_password})
+        const user = new User({name, second_name, patronymic, age, sex, diagnostic, email, password: hash_password})
         await user.save()
 
-        const token = jsonwebtoken.sign({id:user.id}, config.get("secretKey"),{expiresIn:"1h"})
-        return res.json({
-            token,
-            user:{
-                id: user.id,
-                email: user.email
-            }, message: "user created"})
+        
 
     } catch (e) {
         console.log(e);
@@ -65,14 +59,19 @@ router.post('/login',
         }
 
         const isPassValid = bcryptjs.compareSync(password, user.password)
-        console.log(password)
-        console.log(user.password)
         if(!isPassValid){
             return res.status(400).json({message: `password invalid`})
         }
 
+        const token = jsonwebtoken.sign({id:user.id,email:user.email}, config.get("secretKey"),{expiresIn:"1h"})
+        return res.json({
+            token,
+            user:{
+                id: user.id,
+                email: user.email
+            }})
 
-
+        console.log(1111)
     } catch (e) {
         console.log(e);
         res.send({message: 'server error'})
