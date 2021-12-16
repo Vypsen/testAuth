@@ -6,7 +6,6 @@ const addUser = async (name, second_name, patronymic, age, sex, diagnostic, emai
          alert(response.data.message)
 
     } catch (error) {
-        console.log(error)
         alert(error)
     }
 }

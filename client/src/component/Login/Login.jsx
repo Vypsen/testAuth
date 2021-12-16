@@ -1,7 +1,7 @@
 import react, {useState} from 'react';
 import '../Authorization.css';
 import Input from '../../utils/Input/Input'
-import loginUser from '../../action/LoginUser'; 
+import {loginUser} from '../../action/LoginUser'
 import {useDispatch} from 'react-redux'
 
 const Login = () =>{

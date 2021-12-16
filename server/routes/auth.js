@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator')
 const router = new express()
 const jsonwebtoken = require('jsonwebtoken');
 const config = require('config');
+const authMiddleware = require('../middleware/authMiddleware')
 
 
 router.post('/registration',
@@ -22,6 +23,7 @@ router.post('/registration',
         }
         const {name, second_name, patronymic, age, sex, diagnostic, email, password} = req.body
         const candidate = await User.findOne({email})
+        console.log(candidate)
 
         if (candidate){
             return res.status(400).json({message: `user ${email} exist`})
@@ -63,7 +65,7 @@ router.post('/login',
             return res.status(400).json({message: `password invalid`})
         }
 
-        const token = jsonwebtoken.sign({id:user.id,email:user.email}, config.get("secretKey"),{expiresIn:"1h"})
+        const token = jsonwebtoken.sign({id:user.id}, config.get("secretKey"),{expiresIn:"1h"})
         return res.json({
             token,
             user:{
@@ -71,7 +73,27 @@ router.post('/login',
                 email: user.email
             }})
 
-        console.log(1111)
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'server error'})
+
+    }
+})
+
+router.get('/auth', authMiddleware,
+    async  (req,res) =>{
+    try {
+        console.log(req)
+        const user = await User.findOne({_id: req.user.id})
+        const token = jsonwebtoken.sign({id:user.id}, config.get("secretKey"),{expiresIn:"1h"})
+        return res.json({
+            token,
+            user:{
+                id: user.id,
+                email: user.email
+            }
+        })
+
     } catch (e) {
         console.log(e);
         res.send({message: 'server error'})
